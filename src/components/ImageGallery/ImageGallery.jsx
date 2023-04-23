@@ -29,12 +29,14 @@ export default class ImageGallery extends Component{
     const prevPage = prevState.page;
     const nextPage = this.state.page;
 
+    if (prevSearch !== nextSearch) {
+        this.setState({page:1, images:[]})
+    }
+
     if (prevSearch !== nextSearch || prevPage !== nextPage ) {
         this.setState({loading: true});
 
-        if (prevSearch !== nextSearch) {
-    this.setState({page:1, images:[]})
-}
+        
        try {
         const response = await axios.get(`https://pixabay.com/api/?q=${nextSearch}&page=${nextPage}&key=${apiKey}&image_type=photo&orientation=horizontal&per_page=12`);
        
@@ -43,7 +45,9 @@ export default class ImageGallery extends Component{
             images: [...prevState.images, ...response.data.hits]
         }));
 
+        
         this.setState({loadMoreImages: true})
+        
         if (response.data.total === 0) {
             toast.info('We did not find the images you requested');
             this.setState({loadMoreImages: false})
@@ -53,12 +57,14 @@ export default class ImageGallery extends Component{
                         toast.info('we have found all the pictures according to your request');
                         this.setState({loadMoreImages: false})
                     }
+                    
 
        } catch (error) {
         toast.error('Error')
-this.setState({error});
+this.setState({error:error.message});
        } finally {
         this.setState({loading: false});
+       
         
        }
     }
@@ -68,12 +74,12 @@ this.setState({error});
 
 
     render() {
-        const {loading, loadMoreImages} = this.state
+        const {loading, loadMoreImages, images, page} = this.state
         return (
            <>
            {loading && <Loader/>}
             <ul className={css.imageGallery}>
-                {this.state.images.map(image => (
+                {images.map(image => (
                     <ImageGalleryItem
                     key={image.id}
                     webformatURL={image.webformatURL}
