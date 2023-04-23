@@ -74,7 +74,7 @@ this.setState({error:error.message});
 
 
     render() {
-        const {loading, loadMoreImages, images, page} = this.state
+        const {loading, loadMoreImages, images} = this.state
         return (
            <>
            {loading && <Loader/>}
@@ -83,7 +83,7 @@ this.setState({error:error.message});
                     <ImageGalleryItem
                     key={image.id}
                     webformatURL={image.webformatURL}
-                    tag={image.tag}/>
+                    tag={image.tags}/>
                 ))}
 </ul>
 {loadMoreImages && <Button onClick={this.handleLoadMoreImages}/>}
