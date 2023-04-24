@@ -5,15 +5,20 @@ import Searchbar from "./Searchbar/Searchbar";
 import ImageGallery from "./ImageGallery/ImageGallery";
 
 
+
 export class App extends Component {
+  static defaultProps = {
+    page:1,
+    images:[],
+  };
  state = {
   searchImages: '',
- }
- 
-handleFormSubmit = searchImages => {
-  this.setState({searchImages});
-}
+ };
 
+handleFormSubmit = searchImages => {
+  this.setState({searchImages})
+}
+ 
 
   render() {
     return (
@@ -28,6 +33,7 @@ handleFormSubmit = searchImages => {
         <Searchbar onSubmit={this.handleFormSubmit}/>
         <ToastContainer autoClose={3000}/>
         <ImageGallery searchImages={this.state.searchImages}/>
+        
     
       </div>
     );

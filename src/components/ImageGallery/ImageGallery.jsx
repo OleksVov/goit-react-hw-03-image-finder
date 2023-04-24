@@ -83,6 +83,7 @@ this.setState({error:error.message});
                     <ImageGalleryItem
                     key={image.id}
                     webformatURL={image.webformatURL}
+                    largeImageURL={image.largeImageURL}
                     tag={image.tags}/>
                 ))}
 </ul>
