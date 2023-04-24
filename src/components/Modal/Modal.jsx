@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { createPortal } from "react-dom";
-import css from './Modal.module.css'
+import css from './Modal.module.css';
+import PropTypes from 'prop-types';
 
 const modalRoot = document.querySelector('#modal-root');
 export default class Modal extends Component {
@@ -33,4 +34,9 @@ handleKeyDown = event => {
 modalRoot,
         )
     }
+}
+
+createPortal.propTypes = {
+    children: PropTypes.object.isRequired,
+    onClick: PropTypes.func.isRequired,
 }

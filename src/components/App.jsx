@@ -3,6 +3,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Searchbar from "./Searchbar/Searchbar";
 import ImageGallery from "./ImageGallery/ImageGallery";
+import PropTypes from 'prop-types';
 
 
 
@@ -38,4 +39,12 @@ handleFormSubmit = searchImages => {
       </div>
     );
   }
+};
+
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
+
+ImageGallery.propTypes= {
+  searchImages: PropTypes.string.isRequired,
 };

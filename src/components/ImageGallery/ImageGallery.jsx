@@ -5,6 +5,7 @@ import { ImageGalleryItem } from "components/ImageGalleryItem/ImageGalleryItem";
 import { Button } from "components/Button/Button";
 import { Loader } from "components/Loader/Loader";
 import css from './ImageGallery.module.css'
+import PropTypes from 'prop-types';
 
 const apiKey = '34240691-69b0febad4566a0b07df5e473';
 
@@ -91,4 +92,8 @@ this.setState({error:error.message});
            </>
         )
     }
+}
+
+Button.propTypes = {
+    onClick: PropTypes.func.isRequired,
 }
