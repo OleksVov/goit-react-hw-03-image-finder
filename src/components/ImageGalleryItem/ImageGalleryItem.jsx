@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import css from './ImageGalleryItem.module.css'
 import Modal from "components/Modal/Modal";
+import PropTypes from 'prop-types';
 
 
 export class ImageGalleryItem extends Component {
@@ -33,5 +34,8 @@ export class ImageGalleryItem extends Component {
   </>
       )
    }
-    
 }
+
+Modal.propTypes = {
+  onCloseModal: PropTypes.func.isRequired,
+};
